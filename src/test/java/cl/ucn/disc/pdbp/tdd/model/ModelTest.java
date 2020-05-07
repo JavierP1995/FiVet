@@ -32,13 +32,14 @@ public final class ModelTest {
         // The data!
         log.debug(".. valid ..");
         String nombre = "Andrea";
-        String apellido = "Contreras";
-        String nombreApellido = nombre + " " + apellido;
         String rutOk = "152532873";
         String rutError = "15253287K";
 
         // Test constructor and getters
-        Persona persona = new Persona(nombre, apellido, rutOk);
+      /**
+       *
+
+      Persona persona = new Persona(nombre, apellido, rutOk);
         Assertions.assertEquals(persona.getNombre(), nombre);
         Assertions.assertEquals(persona.getApellido(), apellido);
         Assertions.assertEquals(persona.getNombreApellido(), nombreApellido);
@@ -53,11 +54,11 @@ public final class ModelTest {
         Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, null, rutOk));
         Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, apellido, null));
 
+
         // Testing invalid rut
         log.debug(".. rut ..");
         Assertions.assertThrows(RuntimeException.class, () -> new Persona(nombre, apellido, rutError));
-
-        // TODO: Add the size of nombre y apellido.
+       */
 
         log.debug("Done.");
 
