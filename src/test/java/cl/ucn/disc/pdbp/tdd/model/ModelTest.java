@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tdd.util.Validation;
 
 /**
  * Model test.
@@ -68,10 +69,7 @@ public final class ModelTest {
      * Test the digito verificador.
      */
     @Test
-    @Disabled // remove to run
     public void testDigitoVerificador() {
-
-        Assertions.assertFalse(Validation.isRutValid(null));
 
         Assertions.assertTrue(Validation.isRutValid("152532873"));
         Assertions.assertTrue(Validation.isRutValid("21195194K"));
