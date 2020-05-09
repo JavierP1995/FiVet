@@ -1,5 +1,7 @@
 package cl.ucn.disc.pdbp.tdd.model;
 
+import tdd.util.Validation;
+
 public class Persona {
   private String nombre;
   private String direccion;
@@ -12,8 +14,14 @@ public class Persona {
     if (nombre == null || rut == null || (telefonoMovil == 0 && telefonoFijo == 0)) {
       throw new NullPointerException("La persona debe otorgar al menos un nombre, un telefono y un rut");
     }
-    if (nombre.length() < 2){
+    if (nombre.length() < 2) {
       throw new RuntimeException("El nombre debe tener al menos 2 letras");
+    }
+    if (!Validation.isEmailValid(correo)) {
+      throw new RuntimeException("El correo no es valido");
+    }
+    if (!Validation.isRutValid(rut)) {
+      throw new RuntimeException("El rut no es valido");
     }
     this.nombre = nombre;
     this.direccion = direccion;
