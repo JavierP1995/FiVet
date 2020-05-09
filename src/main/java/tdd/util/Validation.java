@@ -34,7 +34,7 @@ public class Validation {
 
   public static boolean isEmailValid(String correo) {
     String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-    if (correo.matches(regex)){
+    if (correo.matches(regex)) {
       return true;
     }
     return false;
