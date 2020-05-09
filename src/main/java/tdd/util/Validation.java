@@ -12,10 +12,10 @@ public class Validation {
         if (iterador == -1) {
           break;
         }
-        if (i == 8){
+        if (i == 8) {
           i = 2;
         }
-        suma = suma + Character.getNumericValue(rut.charAt(iterador))*i;
+        suma = suma + Character.getNumericValue(rut.charAt(iterador)) * i;
         iterador--;
         i++;
       }
@@ -32,6 +32,12 @@ public class Validation {
     }
   }
 
-
+  public static boolean isEmailValid(String correo) {
+    String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    if (correo.matches(regex)){
+      return true;
+    }
+    return false;
+  }
 
 }
