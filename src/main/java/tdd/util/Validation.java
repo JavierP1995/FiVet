@@ -1,7 +1,17 @@
 package tdd.util;
 
+/**
+ * clase auxiliar con metodos de validacion para entradas de datos
+ * @autor Javier Palacios
+ */
 public class Validation {
 
+  /**
+   * Valida el rut a través del digito verificador
+   * @param rut ruta a validar
+   * @return yes/no validez del rut
+   * @throws RuntimeException en caso de que el rut contenga valores no numericos
+   */
   public static boolean isRutValid(String rut) throws RuntimeException {
     char verificador = rut.charAt(rut.length() - 1);
     int iterador = rut.length() - 2;
@@ -32,6 +42,11 @@ public class Validation {
     }
   }
 
+  /**
+   * valida el correo a traves de la expresion regular tipica
+   * @param correo correo a ser revisado
+   * @return yes/no la validez del correo
+   */
   public static boolean isEmailValid(String correo) {
     String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
     if (correo.matches(regex)) {
