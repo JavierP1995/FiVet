@@ -25,35 +25,49 @@
 package cl.ucn.disc.pdbp.tdd.model;
 
 import tdd.util.Validation;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * persona responsable de una mascota
  * @autor Javier Palacios
  */
+@DatabaseTable(tableName = "Persona")
 public class Persona {
+  /**
+   * clave primaria con autoincremento
+   */
+  @DatabaseField(generatedId = true)
+  private long id;
   /**
    * nombre de la persona
    */
+  @DatabaseField(canBeNull = false)
   private String nombre;
   /**
    * direccion de la persona
    */
+  @DatabaseField()
   private String direccion;
   /**
    * telefono fijo de la persona
    */
+  @DatabaseField()
   private int telefonoFijo;
   /**
    * telefono movil de la persona
    */
+  @DatabaseField()
   private int telefonoMovil;
   /**
    * correo electronico de la persona
    */
+  @DatabaseField()
   private String correo;
   /**
    * rut de la persona;
    */
+  @DatabaseField(canBeNull = false, index = true)
   private String rut;
 
   /**
