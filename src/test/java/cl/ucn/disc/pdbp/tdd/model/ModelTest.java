@@ -1,11 +1,18 @@
 package cl.ucn.disc.pdbp.tdd.model;
 
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.support.ConnectionSource;
+import dao.Repository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tdd.util.Validation;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Model test.
@@ -80,7 +87,18 @@ public final class ModelTest {
         Assertions.assertFalse(Validation.isRutValid("1525A2873"));
         Assertions.assertFalse(Validation.isRutValid("15253287K"));
         Assertions.assertFalse(Validation.isRutValid("15253287-"));
+    }
 
+    @Test
+    public void testRepository(){
+      String databaseUrl = "jdbc:h2:mem:fivet_db";
+      try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)) {
+        Repository<Persona, Long> theRepo = new RepositoryOrmLite<>(connectionSource, Persona.class);
+        List<Persona> personas = theRepo.findAll();
+        Assertions.assertEquals(0, personas.size(), "Size != 0");
+      }catch (IOException | SQLException e) {
+        throw new RuntimeException(e);
+      }
     }
 
 }
