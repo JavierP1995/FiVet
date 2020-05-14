@@ -71,6 +71,13 @@ public class Persona {
   private String rut;
 
   /**
+   * contructor vacio: Default visibility + empty body.
+   */
+  Persona() {
+    // nothing here.
+  }
+
+  /**
    * constructor de la persona
    * @param nombre
    * @param direccion
