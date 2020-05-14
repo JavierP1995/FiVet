@@ -90,7 +90,4 @@ public final class ModelTest {
         Assertions.assertFalse(Validation.isRutValid("15253287-"));
     }
 
-    @Test
-
-
 }
