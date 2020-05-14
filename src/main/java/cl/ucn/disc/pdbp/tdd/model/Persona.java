@@ -53,12 +53,12 @@ public class Persona {
    * telefono fijo de la persona
    */
   @DatabaseField()
-  private int telefonoFijo;
+  private Integer telefonoFijo;
   /**
    * telefono movil de la persona
    */
   @DatabaseField()
-  private int telefonoMovil;
+  private Integer telefonoMovil;
   /**
    * correo electronico de la persona
    */
@@ -79,7 +79,7 @@ public class Persona {
    * @param correo
    * @param rut
    */
-  public Persona(String nombre, String direccion, int telefonoFijo, int telefonoMovil, String correo, String rut) {
+  public Persona(String nombre, String direccion, Integer telefonoFijo, Integer telefonoMovil, String correo, String rut) {
     if (nombre == null || rut == null || (telefonoMovil == 0 && telefonoFijo == 0)) {
       throw new NullPointerException("La persona debe otorgar al menos un nombre, un telefono y un rut");
     }
@@ -123,14 +123,14 @@ public class Persona {
   /**
    * @return telefono fijo
    */
-  public int getTelefonoFijo() {
+  public Integer getTelefonoFijo() {
     return telefonoFijo;
   }
 
   /**
    * @return telefono movil
    */
-  public int getTelefonoMovil() {
+  public Integer getTelefonoMovil() {
     return telefonoMovil;
   }
 
@@ -146,5 +146,12 @@ public class Persona {
    */
   public String getRut() {
     return rut;
+  }
+
+  /**
+   * @return id
+   */
+  public long getId() {
+    return id;
   }
 }
