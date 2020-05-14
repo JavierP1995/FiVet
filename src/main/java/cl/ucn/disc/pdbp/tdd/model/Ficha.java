@@ -83,6 +83,10 @@ public class Ficha {
   @DatabaseField(canBeNull = false)
   private Character tipo;
 
+  Ficha(){
+    //constructor vacio
+  }
+
   /**
    * constructor de la ficha
    * @param numero
