@@ -82,6 +82,11 @@ public class Ficha {
    */
   @DatabaseField(canBeNull = false)
   private Character tipo;
+  /**
+   * cuidador a cargo de la mascota
+   */
+  @DatabaseField(foreign = true, canBeNull = false, foreignAutoRefresh = true)
+  private Persona cuidador;
 
   Ficha(){
     //constructor vacio
@@ -99,7 +104,7 @@ public class Ficha {
    * @param tipo
    */
   public Ficha(int numero, String nombre, String especie, ZonedDateTime fechaNacimiento, String raza, Character sexo,
-               String color, Character tipo) {
+               String color, Character tipo, Persona cuidador) {
     this.numero = numero;
     this.nombre = nombre;
     this.especie = especie;
@@ -108,6 +113,7 @@ public class Ficha {
     this.sexo = sexo;
     this.color = color;
     this.tipo = tipo;
+    this.cuidador = cuidador;
   }
 
   /**
@@ -168,5 +174,9 @@ public class Ficha {
 
   public Long getId() {
     return id;
+  }
+
+  public Persona getCuidador() {
+    return cuidador;
   }
 }
