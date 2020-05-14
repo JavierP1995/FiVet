@@ -26,9 +26,41 @@ package dao;
 
 import java.util.List;
 
+/**
+ * Repository pattern
+ * @param <T>
+ * @param <K>
+ */
 public interface Repository<T, K> {
 
+  /**
+   * @return a List of T.
+   */
   List<T> findAll();
+
+  /**
+   * @param id to search.
+   * @return the T with id.
+   */
+  T findById(K id);
+
+  /**
+   * @param t to save.
+   * @return true.
+   */
+  boolean create(T t);
+
+  /**
+   * @param t to upate.
+   * @return true.
+   */
+  boolean update(T t);
+
+  /**
+   * @param id to delete.
+   * @return true.
+   */
+  boolean delete(K id);
 
 }
 
