@@ -38,7 +38,7 @@ public class Persona {
    * clave primaria con autoincremento
    */
   @DatabaseField(generatedId = true)
-  private long id;
+  private Long id;
   /**
    * nombre de la persona
    */
@@ -67,7 +67,7 @@ public class Persona {
   /**
    * rut de la persona;
    */
-  @DatabaseField(canBeNull = false, index = true)
+  @DatabaseField(canBeNull = false, index = true, unique = true)
   private String rut;
 
   /**
@@ -87,13 +87,13 @@ public class Persona {
    * @param rut
    */
   public Persona(String nombre, String direccion, Integer telefonoFijo, Integer telefonoMovil, String correo, String rut) {
-    if (nombre == null || rut == null || (telefonoMovil == 0 && telefonoFijo == 0)) {
+    if (nombre == null || rut == null || telefonoMovil == null) {
       throw new NullPointerException("La persona debe otorgar al menos un nombre, un telefono y un rut");
     }
-    if (telefonoFijo > 999999 || telefonoFijo < 200000) {
+    if (telefonoFijo != null && (telefonoFijo > 999999 || telefonoFijo < 200000)) {
       throw new RuntimeException("El telefono fijo no es válido");
     }
-    if (telefonoFijo > 99999999 || telefonoFijo < 40000000) {
+    if (telefonoMovil != null && (telefonoMovil > 99999999 || telefonoMovil < 40000000)) {
       throw new RuntimeException("El telefono movil no es válido");
     }
     if (nombre.length() < 2) {
