@@ -24,45 +24,64 @@
 
 package cl.ucn.disc.pdbp.tdd.model;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import dao.ZonedDateTimeType;
+
 
 /**
  * ficha con los datos de una mascota paciente de la veterinaria
  * @autor Javier Palacios
  */
+@DatabaseTable(tableName = "Ficha")
 public class Ficha {
+  /**
+   * clave primaria autoincremental
+   */
+  @DatabaseField(generatedId = true)
+  private Long id;
   /**
    * numero identificiador de la ficha
    */
+  @DatabaseField
   private int numero;
   /**
    * nombre de la mascota
    */
+  @DatabaseField(canBeNull = false)
   private String nombre;
   /**
    * especie biologica de la mascota
    */
+  @DatabaseField(canBeNull = false)
   private String especie;
   /**
    * fecha de nacimiento de la mascota
    */
-  private LocalDateTime fechaNacimiento;
+  @DatabaseField(persisterClass = ZonedDateTimeType.class)
+  private ZonedDateTime fechaNacimiento;
   /**
    * raza de la mascota
    */
+  @DatabaseField
   private String raza;
   /**
    * sexo de la mascota f/m (femenino/masculino)
    */
-  private char sexo;
+  @DatabaseField(canBeNull = false)
+  private Character sexo;
   /**
    * color de la mascota
    */
+  @DatabaseField
   private String color;
   /**
    * tipo de tratamiento a la mascota i/e (interno/externo)
    */
-  private char tipo;
+  @DatabaseField(canBeNull = false)
+  private Character tipo;
 
   /**
    * constructor de la ficha
@@ -75,8 +94,8 @@ public class Ficha {
    * @param color
    * @param tipo
    */
-  public Ficha(int numero, String nombre, String especie, LocalDateTime fechaNacimiento, String raza, char sexo,
-               String color, char tipo) {
+  public Ficha(int numero, String nombre, String especie, ZonedDateTime fechaNacimiento, String raza, Character sexo,
+               String color, Character tipo) {
     this.numero = numero;
     this.nombre = nombre;
     this.especie = especie;
@@ -111,7 +130,7 @@ public class Ficha {
   /**
    * @return fecha de nacimiento
    */
-  public LocalDateTime getFechaNacimiento() {
+  public ZonedDateTime getFechaNacimiento() {
     return fechaNacimiento;
   }
 
@@ -125,7 +144,7 @@ public class Ficha {
   /**
    * @return sexo
    */
-  public char getSexo() {
+  public Character getSexo() {
     return sexo;
   }
 
@@ -139,7 +158,11 @@ public class Ficha {
   /**
    * @return tipo de tratamiento
    */
-  public char getTipo() {
+  public Character getTipo() {
     return tipo;
+  }
+
+  public Long getId() {
+    return id;
   }
 }
