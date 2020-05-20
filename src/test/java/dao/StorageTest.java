@@ -92,8 +92,7 @@ public class StorageTest {
 
     try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)) {
 
-      // Creacion de las tablas
-      // TODO: Include this call in the repository?
+      //creacion de las tablas
       TableUtils.createTableIfNotExists(connectionSource, Ficha.class);
       TableUtils.createTableIfNotExists(connectionSource, Persona.class);
 

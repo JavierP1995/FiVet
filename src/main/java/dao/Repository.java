@@ -24,6 +24,9 @@
 
 package dao;
 
+import cfjapa.parser.ast.expr.QualifiedNameExpr;
+import com.j256.ormlite.stmt.QueryBuilder;
+
 import java.util.List;
 
 /**
@@ -37,6 +40,18 @@ public interface Repository<T, K> {
    * @return a List of T.
    */
   List<T> findAll();
+
+  /**
+   * @param key   para filtrar
+   * @param value para buscar
+   * @return      la lista de t
+   */
+  List<T> findAll(String key, Object value);
+
+  /**
+   * @return  el {@Link QueryBuilder}
+   */
+  QueryBuilder<T, K> getQuery();
 
   /**
    * @param id to search.

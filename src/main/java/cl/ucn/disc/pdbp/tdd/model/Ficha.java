@@ -25,6 +25,7 @@
 package cl.ucn.disc.pdbp.tdd.model;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -87,6 +88,8 @@ public class Ficha {
    */
   @DatabaseField(foreign = true, canBeNull = false, foreignAutoRefresh = true)
   private Persona cuidador;
+
+  private List<Control> controles;
 
   Ficha(){
     //constructor vacio
