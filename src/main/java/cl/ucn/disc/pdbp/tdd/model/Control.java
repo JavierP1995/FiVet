@@ -58,7 +58,12 @@ public class Control {
   /**
    * veterinario que atendio a la mascota
    */
-  private String veterinario;
+  private Persona veterinario;
+
+  /**
+   * ficha de la mascota
+   */
+  private Ficha ficha;
 
   /**
    * constructor del control
@@ -69,9 +74,10 @@ public class Control {
    * @param altura
    * @param diagnostico
    * @param veterinario
+   * @param ficha
    */
   public Control(LocalDateTime fecha, LocalDateTime proximoControl, float temperatura, float peso, float altura,
-                 String diagnostico, String veterinario) {
+                 String diagnostico, Persona veterinario, Ficha ficha) {
     this.fecha = fecha;
     this.proximoControl = proximoControl;
     this.temperatura = temperatura;
@@ -79,6 +85,7 @@ public class Control {
     this.altura = altura;
     this.diagnostico = diagnostico;
     this.veterinario = veterinario;
+    this.ficha = ficha;
   }
 
   /**
@@ -126,7 +133,12 @@ public class Control {
   /**
    * @return veterinario responsable
    */
-  public String getVeterinario() {
+  public Persona getVeterinario() {
     return veterinario;
   }
+
+  /**
+   * @return ficha de la mascota
+   */
+  public Ficha getFicha() { return ficha; }
 }
