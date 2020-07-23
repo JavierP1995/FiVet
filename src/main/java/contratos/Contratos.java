@@ -24,8 +24,8 @@
 
 package contratos;
 
-import cl.ucn.disc.pdbp.tdd.model.Ficha;
-import cl.ucn.disc.pdbp.tdd.model.Persona;
+import tdd.model.Ficha;
+import tdd.model.Persona;
 
 import java.util.List;
 
@@ -41,10 +41,10 @@ public interface Contratos {
   /**
    * Contrato: C02-Registrar los datos de una Persona.
    *
-   * @param persona a insertar.
+   * @param cuidador a insertar.
    * @return the {@link Persona} en backend.
    */
-  Persona registrarPersona(Persona persona);
+  Persona registrarCuidador(Persona cuidador);
 
   /**
    * Contrato: C03-Buscar Ficha
@@ -53,4 +53,35 @@ public interface Contratos {
    * @return the {@link List} of {@link Ficha}.
    */
   List<Ficha> buscarFicha(String indicio);
+
+  /**
+   *
+   * @param numero de ficha
+   * @return cuidador de la mascota a la cual la ficha pertenece
+   */
+  Persona getPersonaFromFicha(Integer numero);
+
+  /**
+   *
+   * @return todas las fichas
+   */
+  List<Ficha> getAllFichas();
+
+  /**
+   *
+   * @return todas las personas
+   */
+  List<Persona> getAllPersonas();
+
+  /**
+   * @param idCuidador identificador
+   * @return cuidador correspondiente al id
+   */
+  Persona getCuidador(Long idCuidador);
+
+  /**
+   * @param idFicha identificador
+   * @return ficha correspondiente al id
+   */
+  Ficha getFicha(Long idFicha);
 }

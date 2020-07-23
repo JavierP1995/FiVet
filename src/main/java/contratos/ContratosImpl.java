@@ -24,9 +24,9 @@
 
 package contratos;
 
-import cl.ucn.disc.pdbp.tdd.model.Control;
-import cl.ucn.disc.pdbp.tdd.model.Ficha;
-import cl.ucn.disc.pdbp.tdd.model.Persona;
+import tdd.model.Control;
+import tdd.model.Ficha;
+import tdd.model.Persona;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.logger.Logger;
 import com.j256.ormlite.logger.LoggerFactory;
@@ -102,29 +102,65 @@ public class ContratosImpl implements Contratos {
   }
 
   /**
-   * Contrato: C01-Registrar los datos de un Paciente.
+   * Contrato: C01-Registrar los datos de un paciente, reglejados en una Ficha.
    *
    * @param ficha a insertar.
    * @return the {@link Ficha} en backend.
    */
   @Override
   public Ficha registrarPaciente(Ficha ficha) {
-    return null;
+    //Nulidad
+    if(ficha == null) {
+      throw new IllegalArgumentException("la ficha esta vacia!!");
+    }
+    // Pre-existencia
+    try {
+      QueryBuilder<Ficha, Long> queryFichaNumero = this.repoFicha.getQuery();
+      queryFichaNumero.where().like("numero",ficha.getNumero());
+      if(queryFichaNumero.countOf() > 0)
+        throw new RuntimeException("La ficha ya existe");
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    //Create
+    if(this.repoFicha.create(ficha)) {
+      return ficha;
+    }
+    throw new RuntimeException("La ficha no pudo ser insertada");
   }
 
   /**
    * Contrato: C02-Registrar los datos de una Persona.
    *
-   * @param persona a insertar.
+   * @param cuidador a insertar.
    * @return the {@link Persona} en backend.
    */
   @Override
-  public Persona registrarPersona(Persona persona) {
-    return null;
+  public Persona registrarCuidador(Persona cuidador) {
+    // Nulidad
+    if(cuidador == null) {
+      throw new IllegalArgumentException("La persona es nula");
+    }
+    // Pre-existencia
+    try {
+      QueryBuilder<Persona, Long> queryPersonaRut = this.repoPersona.getQuery();
+      queryPersonaRut.where().like("rut",cuidador.getRut());
+
+      if(queryPersonaRut.countOf() > 0)
+        throw new RuntimeException("La persona ya existe");
+
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
+    }
+    // Create
+    if(this.repoPersona.create(cuidador)) {
+      return cuidador;
+    }
+    throw new RuntimeException("The person couldn't be inserted");
   }
 
   /**
-   * Contrato: C03-Buscar Ficha
+   * Contrato: 3-Buscar Ficha
    *
    * @param indicio a buscar.
    * @return the {@link List} of {@link Ficha}.
@@ -178,4 +214,53 @@ public class ContratosImpl implements Contratos {
             )
     );
   }
+
+  /**
+   *
+   * @param numero de ficha
+   * @return cuidador de la mascota a la cual la ficha pertenece
+   */
+  @Override
+  public Persona getPersonaFromFicha(Integer numero) {
+    List<Ficha> ficha = repoFicha.findAll("numero",Integer.toString(numero));
+    return ficha.get(0).getCuidador();
+  }
+
+  /**
+   *
+   * @return todas las fichas
+   */
+  @Override
+  public List<Ficha> getAllFichas() {
+    return repoFicha.findAll();
+  }
+
+  /**
+   *
+   * @return todas las personas
+   */
+  @Override
+  public List<Persona> getAllPersonas() {
+    return repoPersona.findAll();
+  }
+
+  /**
+   * @param idCuidador identificador
+   * @return cuidador correspondiente al id
+   */
+  @Override
+  public Persona getCuidador(Long idCuidador) {
+    return repoPersona.findById(idCuidador);
+  }
+
+  /**
+   * @param idFicha identificador
+   * @return ficha correspondiente al id
+   */
+  @Override
+  public Ficha getFicha(Long idFicha) {
+    return repoFicha.findById(idFicha);
+  }
+
+
 }
