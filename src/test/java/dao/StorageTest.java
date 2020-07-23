@@ -24,9 +24,8 @@
 
 package dao;
 
-import checkers.units.quals.A;
-import cl.ucn.disc.pdbp.tdd.model.Ficha;
-import cl.ucn.disc.pdbp.tdd.model.Persona;
+import tdd.model.Ficha;
+import tdd.model.Persona;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -41,7 +40,6 @@ import tdd.util.Entity;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.List;
 
 public class StorageTest {
