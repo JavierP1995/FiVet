@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package cl.ucn.disc.pdbp.tdd.model;
+package tdd.model;
 
 import java.time.LocalDateTime;
 

@@ -1,19 +1,10 @@
-package cl.ucn.disc.pdbp.tdd.model;
+package tdd.model;
 
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.support.ConnectionSource;
-import dao.Repository;
-import dao.RepositoryOrmLite;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tdd.util.Validation;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Model test.
