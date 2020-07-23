@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package cl.ucn.disc.pdbp.tdd.model;
+package tdd.model;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -50,8 +50,8 @@ public class Ficha {
   /**
    * numero identificiador de la ficha
    */
-  @DatabaseField
-  private int numero;
+  @DatabaseField(canBeNull = false, index = true, unique = true)
+  private Integer numero;
   /**
    * nombre de la mascota
    */
@@ -113,7 +113,7 @@ public class Ficha {
    * @param color
    * @param tipo
    */
-  public Ficha(int numero, String nombre, String especie, ZonedDateTime fechaNacimiento, String raza, Character sexo,
+  public Ficha(Integer numero, String nombre, String especie, ZonedDateTime fechaNacimiento, String raza, Character sexo,
                String color, Character tipo, Persona cuidador) {
     this.numero = numero;
     this.nombre = nombre;
@@ -129,7 +129,7 @@ public class Ficha {
   /**
    * @return numero
    */
-  public int getNumero() {
+  public Integer getNumero() {
     return numero;
   }
 
