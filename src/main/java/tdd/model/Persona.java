@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package cl.ucn.disc.pdbp.tdd.model;
+package tdd.model;
 
 import tdd.util.Validation;
 import com.j256.ormlite.field.DatabaseField;
@@ -93,7 +93,7 @@ public class Persona {
     if (telefonoFijo != null && (telefonoFijo > 999999 || telefonoFijo < 200000)) {
       throw new RuntimeException("El telefono fijo no es válido");
     }
-    if (telefonoMovil != null && (telefonoMovil > 99999999 || telefonoMovil < 40000000)) {
+    if (telefonoMovil > 99999999 || telefonoMovil < 40000000) {
       throw new RuntimeException("El telefono movil no es válido");
     }
     if (nombre.length() < 2) {
